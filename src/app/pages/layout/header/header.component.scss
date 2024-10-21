@@ -1,0 +1,43 @@
+$headerColor : #26395E;
+
+.cmsHeader {
+    // background: #e3c765;
+    // background-color: #3F51B5;
+    // background-color: #e4c966;
+    background: radial-gradient(circle, hsla(47, 70%, 65%, 1) 0%, hsla(40, 61%, 50%, 1) 100%);
+    color:  $headerColor;
+    // color: #314f81;
+    // #334d80
+}
+.cmsHeader-color{
+    color:  $headerColor;
+}
+
+.header-spacing {
+    display: flex;
+    justify-content: space-between;
+    min-height: 50px;
+    margin-left: 12px;
+    margin-right: 12px;
+    margin: auto;
+}
+
+.brand-text {
+    font-size: 20px;
+    margin: auto 0;
+}
+
+.headder-side-items {
+    margin: auto 0;
+    display: flex;
+}
+
+.row{
+    margin: 0;
+}
+
+.topbar-dd{
+    // padding: 8px;
+    padding: 0px 8px;
+    background-color: #ffffff !important;
+}

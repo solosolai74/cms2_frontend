@@ -1,0 +1,80 @@
+  <nav class="navbar navbar-expand-lg bg-body-tertiary ">
+    <div class="container-fluid container">
+      <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <!-- <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li> -->
+
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="padding-left: 0px !important;">
+              Exam Details
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" [routerLink]="['/exam/examDetails']">Exam Details</a></li>
+              <li><a class="dropdown-item" [routerLink]="['/exam/examRegion']" >Region</a></li>
+              <li><a class="dropdown-item" [routerLink]="['/authentication/login']">Exam Centre</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             Slot Management
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Exam Slots</a></li>
+              <li><a class="dropdown-item" href="#">Paper Type</a></li>
+              <li><a class="dropdown-item" href="#">Centre Slot Mapping</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Role Management
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Exam Role</a></li>
+              <li><a class="dropdown-item" href="#">Exam Members</a></li>
+              <li><a class="dropdown-item" href="#">CI Mapping</a></li>
+              <li><a class="dropdown-item" href="#">Create Regional Admin</a></li>
+              <li><a class="dropdown-item" href="#">PXE Response</a></li>
+
+
+            </ul>
+          </li>
+
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             Admin Centre
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Update Credentials</a></li>
+              <li><a class="dropdown-item" href="#">Admin Dashboard</a></li>
+              <li><a class="dropdown-item" href="#">OTP & Re-Download</a></li>
+              <li><a class="dropdown-item" href="#">Question Paper Upload</a></li>
+              <li><a class="dropdown-item" href="#">Decryption Key Upload</a></li>
+              <li><a class="dropdown-item" href="#">User Management</a></li>
+              <li><a class="dropdown-item" href="#">Centre Download Status</a></li>
+              <li><a class="dropdown-item" href="#">Response Sheet</a></li>
+            </ul>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          </li> -->
+        </ul>
+        <!-- <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form> -->
+      </div>
+    </div>
+  </nav>
