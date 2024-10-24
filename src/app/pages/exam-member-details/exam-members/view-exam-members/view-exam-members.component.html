@@ -1,0 +1,44 @@
+<div>
+
+    <div class="colorTable">
+                
+        <!-- datatable [dtOptions]="dtOptions" -->
+        <table  class="row-border hover">
+            <thead>
+              <tr>
+                <th>Sl No</th>
+                <th>Member Name</th>
+                <th>Member Role</th>
+                <th>Mapped Centers</th>
+                <th>Email Id</th>
+                <th>Contact Number</th>
+                <th>Alternate Number</th>
+                <th>Member Type</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of memberDetails; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ item.memberName }}</td>
+                    <td>{{ item.memberRole }}</td>
+                    <td>{{ item.mappedCenters }}</td> 
+                    <td>{{ item.emailId }}</td>
+                    <td>{{ item.contactNumber }}</td>
+                    <td>{{ item.alternateNumber }}</td>
+                    <td>{{ item.memberType }}</td>
+                 
+                  <td>
+                    <div style="display: flex;">
+
+                        <button  (click)="editExamDetails(item)">Edit</button>
+                        <button (click)="deleteExamDetails(item)">Delete</button>
+                    </div>
+                </td>
+                </tr>
+              </tbody>
+          </table>
+          
+    </div>
+
+</div>

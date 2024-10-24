@@ -1,0 +1,100 @@
+<form [formGroup]="addExamDetails" (ngSubmit)="submit()" style="padding: 0 40px;margin-top: 24px">
+
+    <div class="row m-t-20">
+
+    <!-- Centre Code -->
+    <div class="col-lg-4">
+
+        <div style="display: flex;margin-bottom: 0.3rem;">
+
+            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16" style="margin-bottom: 0 !important;
+      display: flex !important;
+      align-items: center !important;">Centre Code
+            </mat-label>
+            <span class="hintText" style="font-size: 0.8rem; margin-left: 10px; color: gray;">*</span>
+        </div>
+
+        <mat-form-field appearance="outline" class="w-100" color="primary">
+            <mat-select formControlName="centreCode" required placeholder="Select Centre Code">
+                <mat-option *ngFor="let item of centreCode" [value]="item">
+                    {{ item }}
+                </mat-option>
+
+            </mat-select>
+            <mat-error *ngIf="addExamDetails.get('centreCode')?.hasError('required')">
+                Centre Code Name Is Required
+            </mat-error>
+
+        </mat-form-field>
+
+
+    </div>
+
+
+    <!-- Member Role -->
+    <div class="col-lg-4">
+
+        <div style="display: flex;margin-bottom: 0.3rem;">
+
+            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16" style="margin-bottom: 0 !important;
+      display: flex !important;
+      align-items: center !important;">Member Role
+            </mat-label>
+            <span class="hintText" style="font-size: 0.8rem; margin-left: 10px; color: gray;">*</span>
+        </div>
+
+        <mat-form-field appearance="outline" class="w-100" color="primary">
+            <mat-select formControlName="memberRole" required placeholder="Select Member Role">
+                <mat-option *ngFor="let item of memberRole" [value]="item">
+                    {{ item }}
+                </mat-option>
+
+            </mat-select>
+            <mat-error *ngIf="addExamDetails.get('memberRole')?.hasError('required')">
+                Member Role Name Is Required
+            </mat-error>
+
+        </mat-form-field>
+
+
+    </div>
+
+
+          <!-- Member Name -->
+          <div class="col-lg-4">
+
+            <div style="display: flex;margin-bottom: 0.3rem;">
+
+                <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16" style="margin-bottom: 0 !important;
+      display: flex !important;
+      align-items: center !important;">Member Name
+                </mat-label>
+                <span class="hintText" style="font-size: 0.8rem; margin-left: 10px; color: gray;">*</span>
+            </div>
+
+            <mat-form-field appearance="outline" class="w-100" color="primary">
+                <mat-select formControlName="memberName" required placeholder="Select Member Name">
+                    <mat-option *ngFor="let item of memberName" [value]="item">
+                        {{ item }}
+                    </mat-option>
+
+                </mat-select>
+                <mat-error *ngIf="addExamDetails.get('memberName')?.hasError('required')">
+                    Member Name Name Is Required
+                </mat-error>
+
+            </mat-form-field>
+
+
+        </div>
+
+      
+
+    </div>
+
+    <div class="" style="margin-top:20px">
+        <button mat-flat-button color="primary" type="submit" [disabled]="addExamDetails.invalid">Submit</button>
+        <button mat-flat-button color="warn" class="m-l-8" type="reset" (click)="resetSearchForm()"
+            style="margin-left: 12px;">Reset</button>
+    </div>
+</form>

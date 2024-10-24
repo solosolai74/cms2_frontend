@@ -1,0 +1,43 @@
+<div >
+
+    <div class="colorTable">
+                
+        <!-- datatable [dtOptions]="dtOptions" -->
+        <table  class="row-border hover">
+            <thead>
+              <tr>
+                <th>Sl No</th>
+                <th>Exam Name</th>
+                <th>Client Name</th>
+                <th>Exam Start Date</th>
+                <th>Exam End Date</th>
+                <th>Mock Start Date</th>
+                <th>Mock End Date</th>
+                <th>Hash Key</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of examDetails; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ item.examname }}</td>
+                  <td>{{ item.clientname }}</td>
+                  <td>{{ item.exam_start_date }}</td>
+                  <td>{{ item.exam_end_date }}</td>
+                  <td>{{ item.mock_start_date }}</td>
+                  <td>{{ item.mock_end_date }}</td>
+                  <td>{{ item.exam_hash }}</td>
+                  <td>
+                    <div style="display: flex;">
+
+                        <button  (click)="editExamDetails(item)">Edit</button>
+                        <button (click)="deleteExamDetails(item)">Delete</button>
+                    </div>
+                </td>
+                </tr>
+              </tbody>
+          </table>
+          
+    </div>
+
+</div>

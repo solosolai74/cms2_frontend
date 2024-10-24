@@ -1,0 +1,523 @@
+
+<mat-card class="cardWithShadow container">
+
+
+    <mat-card-content>
+
+        <form [formGroup]="addExamDetails" (ngSubmit)="submit()" style="padding: 0 40px;margin-top: 24px">
+
+            <div class="row m-t-20">
+                <div class="col-lg-6">
+        
+                    <div style="display: flex;margin-bottom: 0.3rem;">
+        
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16" style="margin-bottom: 0 !important;
+                  display: flex !important;
+                  align-items: center !important;">Centre Code
+                        </mat-label>
+                        <span class="hintText" style="font-size: 0.8rem; margin-left: 10px; color: gray;">* Maximum 3 Digits</span>
+                    </div>
+        
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <input matInput type="text" formControlName="centreCode" placeholder="Enter Centre Code" required />
+                        <mat-icon matPrefix>
+                            <!-- <i-tabler name="user" class="icon-20 d-flex"></i-tabler> -->
+                            icon
+                        </mat-icon>
+        
+                        <mat-error *ngIf="addExamDetails.get('centreCode')?.hasError('required')">
+                            Centre Code Is Required
+                        </mat-error>
+                        <mat-error
+                            *ngIf="addExamDetails.get('centreCode')?.hasError('pattern') && addExamDetails.get('centreCode')?.invalid">
+                            Enter Valid Centre Code
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+        
+                <!-- Centre Name -->
+                <div class="col-lg-6">
+        
+                    <div style="display: flex;margin-bottom: 0.3rem;">
+        
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16" style="margin-bottom: 0 !important;
+                  display: flex !important;
+                  align-items: center !important;">Centre Name
+                        </mat-label>
+                        <span class="hintText" style="font-size: 0.8rem; margin-left: 10px; color: gray;">* Only alphanumeric, _, -, :, and spaces allowed. Max 50 characters.</span>
+                    </div>
+        
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <input matInput type="text" formControlName="centreName" placeholder="Enter Centre Name" required />
+                        <mat-icon matPrefix>
+                            <!-- <i-tabler name="user" class="icon-20 d-flex"></i-tabler> -->
+                            icon
+                        </mat-icon>
+        
+                        <mat-error *ngIf="addExamDetails.get('centreName')?.hasError('required')">
+                            Centre Name Is Required
+                        </mat-error>
+                        <mat-error
+                            *ngIf="addExamDetails.get('centreName')?.hasError('pattern') && addExamDetails.get('centreName')?.invalid">
+                            Enter Valid Centre Name
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <!-- Centre Address -->
+                <div class="col-lg-6">
+        
+                    <div style="display: flex;margin-bottom: 0.3rem;">
+        
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16" style="margin-bottom: 0 !important;
+          display: flex !important;
+          align-items: center !important;">Centre Address
+                        </mat-label>
+                        <span class="hintText" style="font-size: 0.8rem; margin-left: 10px; color: gray;">* Only alphanumeric, _, -, :, and spaces allowed. Max 250 characters.</span>
+                    </div>
+        
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <input matInput type="text" formControlName="centreAddress" placeholder="Enter Centre Address"
+                            required />
+                        <mat-icon matPrefix>
+                            <!-- <i-tabler name="user" class="icon-20 d-flex"></i-tabler> -->
+                            icon
+                        </mat-icon>
+        
+                        <mat-error *ngIf="addExamDetails.get('centreAddress')?.hasError('required')">
+                            Centre Address Is Required
+                        </mat-error>
+                        <mat-error
+                            *ngIf="addExamDetails.get('centreAddress')?.hasError('pattern') && addExamDetails.get('centreAddress')?.invalid">
+                            Enter Valid Centre Address
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+        
+        
+        
+                <!-- Centre Region -->
+                <div class="col-lg-6">
+        
+                    <div style="display: flex;margin-bottom: 0.3rem;">
+        
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16" style="margin-bottom: 0 !important;
+                  display: flex !important;
+                  align-items: center !important;">Centre Region
+                        </mat-label>
+                        <span class="hintText" style="font-size: 0.8rem; margin-left: 10px; color: gray;">* </span>
+                    </div>
+        
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <mat-select formControlName="centreRegion" required placeholder="Select Centre Region">
+                            <mat-option *ngFor="let item of centreRegion" [value]="item">
+                                {{ item }}
+                            </mat-option>
+        
+                        </mat-select>
+                        <mat-error *ngIf="addExamDetails.get('centreRegion')?.hasError('required')">
+                            Centre Region Name Is Required
+                        </mat-error>
+        
+                    </mat-form-field>
+        
+        
+                </div>
+        
+        
+                <!-- Centre State -->
+                <div class="col-lg-6">
+        
+                    <div style="display: flex;margin-bottom: 0.3rem;">
+        
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16" style="margin-bottom: 0 !important;
+                  display: flex !important;
+                  align-items: center !important;">Centre State
+                        </mat-label>
+                        <span class="hintText" style="font-size: 0.8rem; margin-left: 10px; color: gray;">*</span>
+                    </div>
+        
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <mat-select formControlName="centreState" required placeholder="Select Centre State">
+                            <mat-option *ngFor="let item of centreState" [value]="item">
+                                {{ item }}
+                            </mat-option>
+        
+                        </mat-select>
+                        <mat-error *ngIf="addExamDetails.get('centreState')?.hasError('required')">
+                            Centre State Name Is Required
+                        </mat-error>
+        
+                    </mat-form-field>
+        
+        
+                </div>
+        
+                <!-- Centre City -->
+                <div class="col-lg-6">
+        
+                    <div style="display: flex;margin-bottom: 0.3rem;">
+        
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16" style="margin-bottom: 0 !important;
+                  display: flex !important;
+                  align-items: center !important;">Centre City
+                        </mat-label>
+                        <span class="hintText" style="font-size: 0.8rem; margin-left: 10px; color: gray;">*</span>
+                    </div>
+        
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <mat-select formControlName="centreCity" required placeholder="Select Centre City">
+                            <mat-option *ngFor="let item of centreCity" [value]="item">
+                                {{ item }}
+                            </mat-option>
+        
+                        </mat-select>
+                        <mat-error *ngIf="addExamDetails.get('centreCity')?.hasError('required')">
+                            Centre City Name Is Required
+                        </mat-error>
+        
+                    </mat-form-field>
+        
+        
+                </div>
+        
+                <!-- Centre Landmark -->
+                <div class="col-lg-6">
+        
+                    <div style="display: flex;margin-bottom: 0.3rem;">
+        
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16" style="margin-bottom: 0 !important;
+                  display: flex !important;
+                  align-items: center !important;">Landmark
+                        </mat-label>
+                        <span class="hintText" style="font-size: 0.8rem; margin-left: 10px; color: gray;">* Only alphanumeric, _, -, :, and spaces allowed. Max 250 characters.</span>
+                    </div>
+        
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <input matInput type="text" formControlName="centreLandmark" placeholder="Entre Centre Landmark"
+                            required />
+                        <mat-icon matPrefix>
+                            <!-- <i-tabler name="user" class="icon-20 d-flex"></i-tabler> -->
+                            icon
+                        </mat-icon>
+        
+                        <mat-error *ngIf="addExamDetails.get('centreLandmark')?.hasError('required')">
+                            Centre Landmark Is Required
+                        </mat-error>
+                        <mat-error
+                            *ngIf="addExamDetails.get('centreLandmark')?.hasError('pattern') && addExamDetails.get('centreLandmark')?.invalid">
+                            Enter Valid Centre Landmark
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+        
+                <!-- -------------------------------------------------------  -->
+                <!-- Contact Person Name -->
+                <div class="col-lg-6">
+                    <div style="display: flex; margin-bottom: 0.3rem;">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16"
+                            style="margin-bottom: 0 !important; display: flex !important; align-items: center !important;">
+                            Contact Person Name
+                        </mat-label>
+                        <span class="hintText" style="font-size: 0.8rem; margin-left: 10px; color: gray;">* Allow Only Alphabets
+                            And Maximum 25 Characters</span>
+                    </div>
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <input matInput type="text" formControlName="contactPersonName" placeholder="Enter Contact Person Name"
+                            required />
+                        <mat-error *ngIf="addExamDetails.get('contactPersonName')?.hasError('required')">
+                            Contact Person Name Is Required
+                        </mat-error>
+                        <mat-error
+                            *ngIf="addExamDetails.get('contactPersonName')?.hasError('pattern') && addExamDetails.get('contactPersonName')?.invalid">
+                            Enter Valid Contact Person Name
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+        
+                <!-- Centre Contact Emailid -->
+                <div class="col-lg-6">
+                    <div style="display: flex; margin-bottom: 0.3rem;">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Centre Contact Emailid</mat-label>
+                        <span class="hintText" style="font-size: 0.8rem; margin-left: 10px; color: gray;">* </span>
+                    </div>
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <input matInput type="email" formControlName="centreContactEmail" placeholder="Enter Email" required />
+                        <mat-error *ngIf="addExamDetails.get('centreContactEmail')?.hasError('required')">
+                            Email Is Required
+                        </mat-error>
+                        <mat-error *ngIf="addExamDetails.get('centreContactEmail')?.hasError('pattern')">
+                            Enter Valid Email Address
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+        
+                <!-- Contact Number -->
+                <div class="col-lg-6">
+                    <div style="display: flex; margin-bottom: 0.3rem;">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Contact Number</mat-label>
+                        <span class="hintText" style="font-size: 0.8rem; margin-left: 10px; color: gray;">* Allow Only 10 Digits Number</span>
+                    </div>
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <input matInput type="tel" formControlName="contactNumber" placeholder="Enter Contact Number"
+                            required />
+                        <mat-error *ngIf="addExamDetails.get('contactNumber')?.hasError('required')">
+                            Contact Number Is Required
+                        </mat-error>
+                        <mat-error
+                            *ngIf="addExamDetails.get('contactNumber')?.hasError('pattern') && addExamDetails.get('contactNumber')?.invalid">
+                            Enter Valid Contact Number
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+        
+                <!-- Centre Secondary Number -->
+                <div class="col-lg-6">
+                    <div style="display: flex; margin-bottom: 0.3rem;">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Centre Secondary Number</mat-label>
+                        <span class="hintText" style="font-size: 0.8rem; margin-left: 10px; color: gray;">* Allow Only 10 Digits Number</span>
+                    </div>
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <input matInput type="tel" formControlName="centreSecondaryNumber"
+                            placeholder="Enter Secondary Number" />
+        
+                            <mat-error *ngIf="addExamDetails.get('centreSecondaryNumber')?.hasError('required')">
+                                Secondary Number Is Required
+                            </mat-error>
+                        <mat-error
+                            *ngIf="addExamDetails.get('centreSecondaryNumber')?.hasError('pattern') && addExamDetails.get('centreSecondaryNumber')?.invalid">
+                            Enter Valid Secondary Number
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+        
+                <!-- Centre Pincode -->
+                <div class="col-lg-6">
+                    <div style="display: flex; margin-bottom: 0.3rem;">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Centre Pincode</mat-label>
+                        <span class="hintText" style="font-size: 0.8rem; margin-left: 10px; color: gray;">* Allow Only Numeric
+                            Characters And 6 Digits</span>
+                    </div>
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <input matInput type="text" formControlName="centrePincode" placeholder="Enter Pincode" required />
+                        <mat-error *ngIf="addExamDetails.get('centrePincode')?.hasError('required')">
+                            Pincode Is Required
+                        </mat-error>
+                        <mat-error
+                            *ngIf="addExamDetails.get('centrePincode')?.hasError('pattern') && addExamDetails.get('centrePincode')?.invalid">
+                            Enter Valid Pincode
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+        
+                <!-- Centre Google Map URL -->
+                <div class="col-lg-6">
+                    <div style="display: flex; margin-bottom: 0.3rem;">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Centre Google Map URL</mat-label>
+                        <span class="hintText" style="font-size: 0.8rem; margin-left: 10px; color: gray;">* </span>
+                    </div>
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <input matInput type="url" formControlName="centreGoogleMapUrl" placeholder="Enter Google Map URL" required/>
+                        <mat-error *ngIf="addExamDetails.get('centreGoogleMapUrl')?.hasError('required')">
+                            Google Map URL Is Required
+                        </mat-error>
+                        <mat-error *ngIf="addExamDetails.get('centreGoogleMapUrl')?.hasError('pattern')">
+                            Enter Valid Google Map URL
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+        
+                <!-- Latitude -->
+                <div class="col-lg-6">
+                    <div style="display: flex; margin-bottom: 0.3rem;">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Latitude</mat-label>
+                        <span class="hintText" style="font-size: 0.8rem; margin-left: 10px; color: gray;">* Example 80.0122</span>
+                    </div>
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <input matInput type="text" formControlName="latitude" placeholder="Enter Latitude" required />
+                        <mat-error *ngIf="addExamDetails.get('latitude')?.hasError('required')">
+                            Latitude Is Required
+                        </mat-error>
+                        <mat-error *ngIf="addExamDetails.get('latitude')?.hasError('pattern')">
+                            Enter Valid Latitude
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+        
+                <!-- Longitude -->
+                <div class="col-lg-6">
+                    <div style="display: flex; margin-bottom: 0.3rem;">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Longitude</mat-label>
+                        <span class="hintText" style="font-size: 0.8rem; margin-left: 10px; color: gray;">* Example -34.034</span>
+                    </div>
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <input matInput type="text" formControlName="longitude" placeholder="Enter Longitude" required />
+                        <mat-error *ngIf="addExamDetails.get('longitude')?.hasError('required')">
+                            Longitude Is Required
+                        </mat-error>
+                        <mat-error *ngIf="addExamDetails.get('longitude')?.hasError('pattern')">
+                            Enter Valid Longitude
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+        
+                <!-- Centre Status -->
+                <div class="col-lg-6">
+        
+                    <div style="display: flex;margin-bottom: 0.3rem;">
+        
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16" style="margin-bottom: 0 !important;
+              display: flex !important;
+              align-items: center !important;">Centre Status
+                        </mat-label>
+                        <span class="hintText" style="font-size: 0.8rem; margin-left: 10px; color: gray;">* </span>
+                    </div>
+        
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <mat-select formControlName="centreStatus" required placeholder="Select Centre Status">
+                            <mat-option *ngFor="let item of centreStatus" [value]="item">
+                                {{ item }}
+                            </mat-option>
+        
+                        </mat-select>
+                        <mat-error *ngIf="addExamDetails.get('centreStatus')?.hasError('required')">
+                            Centre Status Name Is Required
+                        </mat-error>
+        
+                    </mat-form-field>
+        
+        
+                </div>
+        
+        
+                <!-- Centre Rating -->
+                <div class="col-lg-6">
+        
+                    <div style="display: flex;margin-bottom: 0.3rem;">
+        
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16" style="margin-bottom: 0 !important;
+                  display: flex !important;
+                  align-items: center !important;">Rating
+                        </mat-label>
+                        <span class="hintText" style="font-size: 0.8rem; margin-left: 10px; color: gray;">* </span>
+                    </div>
+        
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <mat-select formControlName="centreRating" required placeholder="Select Rating">
+                            <mat-option *ngFor="let item of rating" [value]="item">
+                                {{ item }}
+                            </mat-option>
+        
+                        </mat-select>
+                        <mat-error *ngIf="addExamDetails.get('centreRating')?.hasError('required')">
+                            Rating Name Is Required
+                        </mat-error>
+        
+                    </mat-form-field>
+        
+        
+                </div>
+        
+                <!-- Remark -->
+        
+                <div class="col-lg-6">
+        
+                    <div style="display: flex;margin-bottom: 0.3rem;">
+        
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16" style="margin-bottom: 0 !important;
+                  display: flex !important;
+                  align-items: center !important;">Remark
+                        </mat-label>
+                        <span class="hintText" style="font-size: 0.8rem; margin-left: 10px; color: gray;"> Only alphanumeric, _, -, :, and spaces allowed. Max 250 characters.</span>
+                    </div>
+        
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <input matInput type="text" formControlName="remark" placeholder="Entre Remark" />
+                        <!-- <mat-error *ngIf="addExamDetails.get('remark')?.hasError('required')">
+                            Remark Is Required
+                        </mat-error> -->
+                        <mat-error
+                            *ngIf="addExamDetails.get('remark')?.hasError('pattern') && addExamDetails.get('remark')?.invalid">
+                            Enter Valid Remark
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+        
+                <!-- Centre Total Capacity -->
+        
+                <div class="col-lg-6">
+        
+                    <div style="display: flex;margin-bottom: 0.3rem;">
+        
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16" style="margin-bottom: 0 !important;
+                      display: flex !important;
+                      align-items: center !important;">Centre Total Capacity
+                        </mat-label>
+                        <span class="hintText" style="font-size: 0.8rem; margin-left: 10px; color: gray;">* Allow Only
+                            Numbers</span>
+                    </div>
+        
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <input matInput type="text" formControlName="centreTotalCapacity"
+                            placeholder="Enter Centre Total Capacity" required />
+                        <mat-icon matPrefix>
+                            <!-- <i-tabler name="user" class="icon-20 d-flex"></i-tabler> -->
+                            icon
+                        </mat-icon>
+        
+                        <mat-error *ngIf="addExamDetails.get('centreTotalCapacity')?.hasError('required')">
+                            Centre Total Capacity Is Required
+                        </mat-error>
+                        <mat-error
+                            *ngIf="addExamDetails.get('centreTotalCapacity')?.hasError('pattern') && addExamDetails.get('centreTotalCapacity')?.invalid">
+                            Enter Valid Centre Total Capacity
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+        
+                <!-- Exam Detail -->
+                <div class="col-lg-6">
+        
+                    <div style="display: flex;margin-bottom: 0.3rem;">
+        
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16" style="margin-bottom: 0 !important;
+              display: flex !important;
+              align-items: center !important;">Exam Detail
+                        </mat-label>
+                        <span class="hintText" style="font-size: 0.8rem; margin-left: 10px; color: gray;">*</span>
+                    </div>
+        
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <mat-select formControlName="examDetails" required placeholder="Select Exam Detail">
+                            <mat-option *ngFor="let item of examDetail" [value]="item">
+                                {{ item }}
+                            </mat-option>
+        
+                        </mat-select>
+                        <mat-error *ngIf="addExamDetails.get('examDetails')?.hasError('required')">
+                            Exam Detail Name Is Required
+                        </mat-error>
+        
+                    </mat-form-field>
+        
+        
+                </div>
+        
+        
+        
+            </div>
+        
+            <div class="" style="margin-top:20px">
+                <button mat-flat-button color="primary" type="submit" [disabled]="addExamDetails.invalid">Update</button>
+                <button mat-flat-button color="warn" class="m-l-8" type="reset" (click)="resetSearchForm()"
+                    style="margin-left: 12px;">Reset</button>
+
+          <button mat-flat-button color="warn" class="m-l-8" type="button" (click)="cancleEdit()" style="margin-left: 12px;">Cancle</button>
+
+            </div>
+        </form>
+
+    </mat-card-content>
+
+    </mat-card>
+
+

@@ -1,0 +1,120 @@
+<div *ngIf="!editable">
+
+
+    <div>
+        <form [formGroup]="stateForm" (ngSubmit)="submit()" style="padding: 0 40px;margin-top: 24px">
+
+            <div class="row m-t-20">
+                <div class="col-lg-6">
+
+                    <div style="display: flex;margin-bottom: 0.3rem;">
+
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16" style="margin-bottom: 0 !important;
+              display: flex !important;
+              align-items: center !important;">State Name
+                        </mat-label>
+                        <span class="hintText" style="font-size: 0.8rem; margin-left: 10px; color: gray;">* Allow Only
+                            Alphanumeric Characters And Maximum 30 Characters </span>
+                    </div>
+
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <input matInput type="text" formControlName="state" placeholder="Enter State Name" required />
+                        <mat-icon matPrefix>
+                            <!-- <i-tabler name="user" class="icon-20 d-flex"></i-tabler> -->
+                            icon
+                        </mat-icon>
+
+                        <mat-error *ngIf="stateForm.get('state')?.hasError('required')">
+                            State Name Is Required
+                        </mat-error>
+                        <mat-error
+                            *ngIf="stateForm.get('state')?.hasError('pattern') && stateForm.get('state')?.invalid">
+                            Enter Valid State Name
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-lg-6">
+
+                    <div style="display: flex;margin-bottom: 0.3rem;">
+
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16" style="margin-bottom: 0 !important;
+              display: flex !important;
+              align-items: center !important;">Region Name
+                        </mat-label>
+                        <span class="hintText" style="font-size: 0.8rem; margin-left: 10px; color: gray;">* </span>
+                    </div>
+
+
+
+                    <mat-form-field appearance="outline" class="w-100" color="primary">
+                        <mat-select formControlName="region" required placeholder="Region">
+                            <mat-option *ngFor="let item of regionData" [value]="item">
+                                {{ item }}
+                            </mat-option>
+
+                        </mat-select>
+                        <mat-error *ngIf="stateForm.get('region')?.hasError('required')">
+                            Region Name Is Required
+                        </mat-error>
+
+                    </mat-form-field>
+
+
+
+                </div>
+
+            </div>
+
+            <div class="" style="margin-top:20px">
+                <button mat-flat-button color="primary" type="submit" [disabled]="stateForm.invalid">Submit</button>
+                <button mat-flat-button color="warn" class="m-l-8" type="reset" (click)="resetSearchForm()"
+                    style="margin-left: 12px;">Reset</button>
+            </div>
+
+        </form>
+    </div>
+
+    <hr>
+
+    <div>
+
+        <div class="colorTable">
+
+            <!-- datatable [dtOptions]="dtOptions" -->
+            <table class="row-border hover">
+                <thead>
+                    <tr>
+                        <th>Sl No</th>
+                        <th>State</th>
+                        <th>Region</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of stateData; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ item.state }}</td>
+                        <td>{{ item.region }}</td>
+
+
+                        <td>
+                            <div style="display: flex;">
+
+                                <button (click)="editExamMode(item)">Edit</button>
+                                <button (click)="deleteExamMode(item)">Delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div *ngIf="editable">
+    <app-edit-state [data]="editInput" (dataChanged)="onRegionChange($event)"></app-edit-state>
+</div>
