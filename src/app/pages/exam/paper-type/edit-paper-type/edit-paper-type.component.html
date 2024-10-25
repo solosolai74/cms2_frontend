@@ -1,50 +1,29 @@
 <mat-card class="cardWithShadow container">
-
-
-    <mat-card-content>
-        
-        <form [formGroup]="examModeDetails" (ngSubmit)="submit()" style="padding: 0 40px;margin-top: 24px">
-
-            <div class="row m-t-20">
-              <div class="col-lg-6">
-        
-                <div style="display: flex;margin-bottom: 0.3rem;">
-        
-                  <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16" style="margin-bottom: 0 !important;
-                  display: flex !important;
-                  align-items: center !important;">Paper Type
-                  </mat-label>
-                  <span class="hintText" style="font-size: 0.8rem; margin-left: 10px; color: gray;">* Allow Only
-                    Alphanumeric  Min. 1 & Max. 2 Characters Allowed </span>
-                </div>
-          
-                <mat-form-field appearance="outline" class="w-100" color="primary">
-                  <input matInput type="text" formControlName="paperType" placeholder="Enter Paper Type" required  (input)="onInputChange($event)"/>
-                  <mat-icon matPrefix>
-                    <!-- <i-tabler name="user" class="icon-20 d-flex"></i-tabler> -->
-                    icon
-                  </mat-icon>
-          
-                  <mat-error *ngIf="examModeDetails.get('paperType')?.hasError('required')">
-                    Paper Type Is Required
-                  </mat-error>
-                  <mat-error *ngIf="examModeDetails.get('paperType')?.hasError('pattern') && examModeDetails.get('paperType')?.invalid">
-                    Enter Valid Paper Type
-                  </mat-error>
-                </mat-form-field>
-              </div>
-        
-             
-            </div>
-
-            <div class="" style="margin-top:20px">
-                <button mat-flat-button color="primary" type="submit" [disabled]="examModeDetails.invalid">Update</button>
-                <button mat-flat-button color="warn" class="m-l-8" type="reset" style="margin-left: 12px;">Reset</button>
-                <button mat-flat-button color="warn" class="m-l-8" type="button" (click)="cancleEdit()" style="margin-left: 12px;">Cancle</button>
-
-              </div>
-
-            </form>
-    </mat-card-content>
-
+  <mat-card-content>
+    <form [formGroup]="examModeDetails" (ngSubmit)="submit()">
+      <div class="row">
+        <div class="col-md-4">
+          <div>
+            <mat-label>Paper Type
+            </mat-label>
+          </div>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput type="text" formControlName="paperType" placeholder="Enter Paper Type" required
+              (input)="onInputChange($event)" />
+            <mat-error *ngIf="examModeDetails.get('paperType')?.hasError('required')">
+              Paper Type Is Required
+            </mat-error>
+            <mat-error
+              *ngIf="examModeDetails.get('paperType')?.hasError('pattern') && examModeDetails.get('paperType')?.invalid">
+              Enter Valid Paper Type
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="mx-3">
+        <button mat-flat-button color="primary" type="submit" [disabled]="examModeDetails.invalid">Update</button>
+        <button mat-flat-button color="warn" class="ms-2" type="button" (click)="cancleEdit()">Cancel</button>
+      </div>
+    </form>
+  </mat-card-content>
 </mat-card>

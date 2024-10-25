@@ -1,31 +1,14 @@
 <mat-card class="cardWithShadow container">
-
-
   <mat-card-content>
-
-    <form [formGroup]="examSlotsFrom" (ngSubmit)="submit()" style="padding: 0 40px;margin-top: 24px">
-
-      <div class="row m-t-20">
-        <div class="col-lg-6">
-
-          <div style="display: flex;margin-bottom: 0.3rem;">
-
-            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16" style="margin-bottom: 0 !important;
-                  display: flex !important;
-                  align-items: center !important;">Exam Slot
-            </mat-label>
-            <span class="hintText" style="font-size: 0.8rem; margin-left: 10px; color: gray;">* Allow Only
-              Alphanumeric Min. 1 & Max. 2 Characters Allowed </span>
+    <form [formGroup]="examSlotsFrom" (ngSubmit)="submit()">
+      <div class="row">
+        <div class="col-md-4">
+          <div>
+            <mat-label>Exam Slot</mat-label>
           </div>
-
           <mat-form-field appearance="outline" class="w-100" color="primary">
             <input matInput type="text" formControlName="examSlot" placeholder="Enter Exam Slot" required
               (input)="onInputChange($event)" />
-            <mat-icon matPrefix>
-              <!-- <i-tabler name="user" class="icon-20 d-flex"></i-tabler> -->
-              icon
-            </mat-icon>
-
             <mat-error *ngIf="examSlotsFrom.get('examSlot')?.hasError('required')">
               Exam Slot Is Required
             </mat-error>
@@ -35,93 +18,50 @@
             </mat-error>
           </mat-form-field>
         </div>
-
-        <div class="col-lg-3">
-
-          <div style="display: flex;margin-bottom: 0.3rem;">
-
-            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16" style="margin-bottom: 0 !important;
-                  display: flex !important;
-                  align-items: center !important;">Download Date
-            </mat-label>
-            <span class="hintText" style="font-size: 0.8rem; margin-left: 10px; color: gray;">*</span>
+        <div class="col-md-4">
+          <div>
+            <mat-label>Download Date</mat-label>
           </div>
-
-
           <mat-form-field appearance="outline" class="w-100">
-            <input matInput [matDatepicker]="dp" placeholder="dd/mm/yyyy"
-              formControlName="downloadDate" required>
+            <input matInput [matDatepicker]="dp" placeholder="dd/mm/yyyy" formControlName="downloadDate" required>
             <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-
-            <!-- (yearSelected)="chosenYearHandler($event)"
-                                    (monthSelected)="chosenMonthHandler($event, dp)" -->
             <mat-datepicker #dp startView="multi-year" panelClass="example-month-picker">
             </mat-datepicker>
             <mat-error *ngIf="examSlotsFrom.get('downloadDate')?.hasError('required')">
               Download Date Is Required
             </mat-error>
           </mat-form-field>
-
         </div>
-
-
-        <div class="col-lg-3">
-
-          <div style="display: flex;margin-bottom: 0.3rem;">
-
-            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16" style="margin-bottom: 0 !important;
-                  display: flex !important;
-                  align-items: center !important;">Download Time
+        <div class="col-md-4">
+          <div>
+            <mat-label>Download Time
             </mat-label>
-            <span class="hintText" style="font-size: 0.8rem; margin-left: 10px; color: gray;">* </span>
           </div>
-
           <mat-form-field appearance="outline" class="w-100" color="primary">
             <input matInput type="time" formControlName="downloadTime" placeholder="Enter Download Time" required />
-            <!-- <mat-icon matPrefix>
-              icon
-            </mat-icon> -->
-
             <mat-error *ngIf="examSlotsFrom.get('downloadTime')?.hasError('required')">
               Download Time Is Required
             </mat-error>
-            <!-- <mat-error
-              *ngIf="examSlotsFrom.get('downloadTime')?.hasError('pattern') && examSlotsFrom.get('downloadTime')?.invalid">
-              Enter Valid Download Time
-            </mat-error> -->
           </mat-form-field>
         </div>
-
       </div>
-
-      <div class="" style="margin-top:20px">
+      <div class="mx-3">
         <button mat-flat-button color="primary" type="submit" [disabled]="examSlotsFrom.invalid">Submit</button>
-        <button mat-flat-button color="warn" class="m-l-8" type="reset" (click)="resetSearchForm()"
-          style="margin-left: 12px;">Reset</button>
+        <button mat-flat-button color="warn" class="ms-2" type="reset" (click)="resetSearchForm()">Reset</button>
       </div>
-
     </form>
-
   </mat-card-content>
-
 </mat-card>
-
 <mat-card class="cardWithShadow container mt-3">
-
-
   <mat-card-content>
     <div>
-
       <div class="colorTable">
-
-        <!-- datatable [dtOptions]="dtOptions" -->
-        <table class="row-border hover">
+        <table class="table table-striped">
           <thead>
             <tr>
-              <th>Sl No</th>
+              <th>S.No</th>
               <th>Slot Name</th>
               <th>Download Time</th>
-
               <th>Action</th>
             </tr>
           </thead>
@@ -130,21 +70,16 @@
               <td>{{ i + 1 }}</td>
               <td>{{ item.examslot }}</td>
               <td>{{ item.download_time | date:'dd-MM-yyyy HH:mm:ss' }}</td>
-
               <td>
-                <div style="display: flex;">
-
-                  <button (click)="editExamMode(item)">Edit</button>
-                  <button (click)="deleteExamMode(item)">Delete</button>
+                <div>
+                  <button class="rounded btn btn-warning btn-sm btn-circle bi bi-pencil me-2" (click)="editExamMode(item)"></button>
+                  <button class="rounded btn btn-danger btn-sm btn-circle bi bi-trash3-fill" (click)="deleteExamMode(item)"></button>
                 </div>
               </td>
             </tr>
           </tbody>
         </table>
-
       </div>
-
     </div>
   </mat-card-content>
-
 </mat-card>

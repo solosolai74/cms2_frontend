@@ -1,20 +1,17 @@
-<div >
-
-    <div class="colorTable">
-                
-        <!-- datatable [dtOptions]="dtOptions" -->
-        <table  class="row-border hover">
+<div class="mt-2">
+    <div >
+        <table class="table table-striped">
             <thead>
               <tr>
-                <th>Sl No</th>
-                <th>Exam Name</th>
-                <th>Client Name</th>
-                <th>Exam Start Date</th>
-                <th>Exam End Date</th>
-                <th>Mock Start Date</th>
-                <th>Mock End Date</th>
-                <th>Hash Key</th>
-                <th>Action</th>
+                <th cope="col">S.No</th>
+                <th cope="col">Exam Name</th>
+                <th cope="col">Client Name</th>
+                <th cope="col">Exam Start Date</th>
+                <th cope="col">Exam End Date</th>
+                <th cope="col">Mock Start Date</th>
+                <th cope="col">Mock End Date</th>
+                <th cope="col">Hash Key</th>
+                <th cope="col">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -28,16 +25,13 @@
                   <td>{{ item.mock_end_date }}</td>
                   <td>{{ item.exam_hash }}</td>
                   <td>
-                    <div style="display: flex;">
-
-                        <button  (click)="editExamDetails(item)">Edit</button>
-                        <button (click)="deleteExamDetails(item)">Delete</button>
+                    <div>
+                        <button class="rounded btn btn-warning btn-sm btn-circle bi bi-pencil me-2" (click)="editExamDetails(item)"></button>
+                        <button  class="rounded btn btn-danger btn-sm btn-circle bi bi-trash3-fill"  (click)="deleteExamDetails(item)"></button>
                     </div>
                 </td>
                 </tr>
               </tbody>
           </table>
-          
     </div>
-
 </div>
