@@ -1,0 +1,97 @@
+<form [formGroup]="deviceMappingForm" (ngSubmit)="submit()" style="padding: 0 40px;margin-top: 24px">
+
+    <div class="row m-t-20">
+
+            <!--Exam Name -->
+            <div class="col-lg-4">
+
+                <div style="display: flex;margin-bottom: 0.3rem;">
+        
+                    <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16" style="margin-bottom: 0 !important;
+              display: flex !important;
+              align-items: center !important;">Exam Name
+                    </mat-label>
+                    <span class="hintText" style="font-size: 0.8rem; margin-left: 10px; color: gray;">*</span>
+                </div>
+        
+                <mat-form-field appearance="outline" class="w-100" color="primary">
+                    <mat-select formControlName="examName" required placeholder="Select Exam Name">
+                        <mat-option *ngFor="let item of examName" [value]="item">
+                            {{ item }}
+                        </mat-option>
+        
+                    </mat-select>
+                    <mat-error *ngIf="deviceMappingForm.get('examName')?.hasError('required')">
+                        Exam Name Name Is Required
+                    </mat-error>
+        
+                </mat-form-field>
+        
+        
+            </div>
+
+            <!--Centre Name -->
+    <div class="col-lg-4">
+
+        <div style="display: flex;margin-bottom: 0.3rem;">
+
+            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16" style="margin-bottom: 0 !important;
+      display: flex !important;
+      align-items: center !important;">Centre Name
+            </mat-label>
+            <span class="hintText" style="font-size: 0.8rem; margin-left: 10px; color: gray;">*</span>
+        </div>
+
+        <mat-form-field appearance="outline" class="w-100" color="primary">
+            <mat-select formControlName="centreName" required placeholder="SelectCentre Name">
+                <mat-option *ngFor="let item of centreName" [value]="item">
+                    {{ item }}
+                </mat-option>
+
+            </mat-select>
+            <mat-error *ngIf="deviceMappingForm.get('centreName')?.hasError('required')">
+               Centre Name Name Is Required
+            </mat-error>
+
+        </mat-form-field>
+
+
+    </div>
+
+
+    <!-- Device Name -->
+    <div class="col-lg-4">
+
+        <div style="display: flex;margin-bottom: 0.3rem;">
+
+            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16" style="margin-bottom: 0 !important;
+      display: flex !important;
+      align-items: center !important;">Device Name
+            </mat-label>
+            <span class="hintText" style="font-size: 0.8rem; margin-left: 10px; color: gray;">*</span>
+        </div>
+
+        <mat-form-field appearance="outline" class="w-100" color="primary">
+            <mat-select formControlName="deviceName" required placeholder="Select Device Name">
+                <mat-option *ngFor="let item of deviceName" [value]="item">
+                    {{ item }}
+                </mat-option>
+
+            </mat-select>
+            <mat-error *ngIf="deviceMappingForm.get('deviceName')?.hasError('required')">
+                Device Name Name Is Required
+            </mat-error>
+
+        </mat-form-field>
+
+
+    </div>
+
+    </div>
+
+    <div class="" style="margin-top:20px">
+        <button mat-flat-button color="primary" type="submit" [disabled]="deviceMappingForm.invalid">Submit</button>
+        <button mat-flat-button color="warn" class="m-l-8" type="reset" (click)="resetSearchForm()"
+            style="margin-left: 12px;">Reset</button>
+    </div>
+</form>

@@ -1,13 +1,10 @@
-
 <app-header *ngIf="currentPath != '/authentication/login' && currentPath != '/'"></app-header>
-
 <app-navigation *ngIf="currentPath != '/authentication/login' && currentPath != '/'"></app-navigation>
-
-<div style="background-color: #f8f9fa; min-height: calc(100vh - 106px);">
-    
+<div style="background-color: #f8f9fa; " *ngIf="currentPath != '/authentication/login' && currentPath != '/'">
     <div class="container">
-
-        <app-breadcrumb ></app-breadcrumb>
+        <app-breadcrumb></app-breadcrumb>
     </div>
+</div>
+<div style="background-color: #f8f9fa; min-height: calc(100vh - 106px);">
     <router-outlet></router-outlet>
 </div>

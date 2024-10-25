@@ -5,6 +5,9 @@ import { NavigationComponent } from './pages/layout/navigation/navigation.compon
 import { filter } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { BreadcrumbComponent } from './pages/layout/breadcrumb/breadcrumb.component';
+import { CentreDeviceDetailsService } from './services/centre-device-details.service';
+import { CommonService } from './services/common.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-root',
@@ -17,13 +20,9 @@ export class AppComponent {
   title = 'cms2-frontend';
 
   currentPath: any
-  constructor(private router: Router) {
-    // this.router.events
-    // .pipe(filter(event => event instanceof NavigationEnd))
-    // .subscribe((event: NavigationEnd) => {
-    //   console.log('Current path:', event.url);
-    //   this.currentPath = event.url
-    // });
+
+  constructor(private readonly router: Router) {
+    
   }
 
   ngOnInit() {
@@ -34,4 +33,8 @@ export class AppComponent {
         this.currentPath = event.url
       });
   }
+
+
+
+
 }

@@ -6,6 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
+import { BreadcrumbDetailsService } from '../../../../breadcrumb-details.service';
 
 @Component({
   selector: 'app-edit-exam-device',
@@ -19,7 +20,10 @@ export class EditExamDeviceComponent {
   editData : any 
 
  
- constructor(private readonly fb: FormBuilder, private readonly router: Router) {
+ constructor(private readonly fb: FormBuilder, private readonly router: Router, private readonly breadcrumbDetails: BreadcrumbDetailsService) {
+
+    this.breadcrumbDetails.setBreadcrumbName('Exam Device Details');
+
 
  //  this.editData = localStorage.getItem('edit')
  //  this.editData = JSON.parse(localStorage.getItem('edit'));

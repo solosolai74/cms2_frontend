@@ -8,6 +8,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { CentreDeviceDetailsService } from '../../../../../services/centre-device-details.service';
+import { CommonService } from '../../../../../services/common.service';
 
 @Component({
   selector: 'app-edit-state',
@@ -16,29 +18,21 @@ import Swal from 'sweetalert2';
   templateUrl: './edit-state.component.html',
   styleUrl: './edit-state.component.scss'
 })
-export class EditStateComponent {
 
+export class EditStateComponent {
 
   editStateForm: FormGroup;
   editData: any
   @Input() data: any; // Use a more specific type if you know the structure
   @Output() dataChanged = new EventEmitter<{ value: any; updated: boolean }>();
-  regionData: any[] = ['r1', 'r2', 'r3']
+  regionData: any[] = []
+  examName: any[] = []
 
-
-  constructor(private readonly fb: FormBuilder, private readonly router: Router) {
-
-    //  this.editData = localStorage.getItem('edit')
-    //  this.editData = JSON.parse(localStorage.getItem('edit'));
-
-    //   const retrievedDataString = localStorage.getItem('edit');
-    // this.editData = retrievedDataString ? JSON.parse(retrievedDataString) : null;
-
-    console.log("edit data state", this.data);
-
-
-
+  constructor(private readonly fb: FormBuilder, private readonly router: Router, private readonly centreDeviceDetailService: CentreDeviceDetailsService, private readonly common: CommonService) {
     this.editStateForm = this.fb.group({
+      examName: ['', [
+        Validators.required,
+      ]],
       state: ['', [
         Validators.required,
         Validators.pattern(/^[a-zA-Z0-9]{1,30}$/) // Update regex as needed
@@ -47,36 +41,72 @@ export class EditStateComponent {
         Validators.required,
       ]],
     });
-
-
-
   }
 
   ngOnInit() {
-    console.log("edit data state init", this.data);
-
-    this.editStateForm.get('region')?.setValue(this.data.region);
-    this.editStateForm.get('state')?.setValue(this.data.state);
-
+    const retrievedDataString = localStorage.getItem('examName');
+    this.examName = retrievedDataString ? JSON.parse(retrievedDataString) : [];
+    const params = { examcode: this.data.examcode__examcode }
+    this.regionStateApi(params)
+    this.editStateForm.get('region')?.setValue(this.data.examregion__regionname);
+    this.editStateForm.get('state')?.setValue(this.data.statename);
+    this.editStateForm.get('examName')?.setValue(this.data.examcode__examcode);
   }
 
   submit() {
-    console.log("editStateForm", this.editStateForm.value);
-    //  this.dataChanged.emit(this.editStateForm.value);
-    this.dataChanged.emit({ value: this.editStateForm.value, updated: true });
-
-  }
-
-  resetSearchForm() {
-    console.log("reset form");
+    const params = {
+      id: this.data.id,
+      statename: this.editStateForm.value.state,
+      examregion__regionname: this.editStateForm.value.region,
+      examcode__examcode: this.editStateForm.value.examName
+    }
+    this.editStateApi(params)
   }
 
   cancleEdit() {
-
-    //  this.dataChanged.emit('');
     this.dataChanged.emit({ value: '', updated: false });
-
-
   }
 
+  onExamSelect(event: any) {
+    const params = { examcode: event.value }
+    this.regionStateApi(params)
+  }
+
+  regionStateApi(data: any) {
+    this.centreDeviceDetailService.regionLists(data).subscribe((res) => {
+      if (res.api_status === true) {
+        this.regionData = res.data
+      } else {
+        Swal.fire({
+          text: `${res.message}`,
+          icon: 'error',
+        });
+      }
+    },
+      (error) => {
+        this.common.apiErrorHandler(error);
+      }
+    );
+  }
+
+  editStateApi(data: any) {
+    this.centreDeviceDetailService.editExamState(data).subscribe((res) => {
+      if (res.api_status === true) {
+        this.dataChanged.emit({ value: this.editStateForm.value, updated: true });
+        Swal.fire({
+          text: `${res.message}`,
+          icon: 'success',
+        });
+      } else {
+        Swal.fire({
+          text: `${res.message}`,
+          icon: 'error',
+        });
+      }
+    },
+      (error) => {
+        this.common.apiErrorHandler(error);
+      }
+    );
+  }
 }

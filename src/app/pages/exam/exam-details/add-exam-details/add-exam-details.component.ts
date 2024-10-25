@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 import { ExamDetailsService } from '../../../../services/exam-details.service';
 import { CommonService } from '../../../../services/common.service';
 import { Router } from '@angular/router';
+import { CentreDeviceDetailsService } from '../../../../services/centre-device-details.service';
 // import { HttpClientModule } from '@angular/common/http';
 
 
@@ -51,7 +52,7 @@ export class AddExamDetailsComponent {
   // maxDate: Date;
   
   minDate: Date;
-  constructor(private readonly fb: FormBuilder, private readonly examDetailsService : ExamDetailsService,  private readonly common : CommonService, private readonly router: Router ) {
+  constructor(private readonly fb: FormBuilder, private readonly examDetailsService : ExamDetailsService,  private readonly common : CommonService, private readonly router: Router,  private readonly centreDeviceDetailService: CentreDeviceDetailsService,  ) {
 
     const today = new Date();
 
@@ -161,7 +162,7 @@ export class AddExamDetailsComponent {
   
         if (res.api_status === true) {
           this.resetSearchForm()
-          
+          this.examNameAPI()
         Swal.fire({
           // title: `${res.message}`,
           text: `${res.message}`,
@@ -212,6 +213,23 @@ export class AddExamDetailsComponent {
 
     return endDate < startDate ? { dateRangeInvalid: true } : null;
   };
+}
+
+examNameAPI() {
+  this.centreDeviceDetailService.examName().subscribe((res) => {
+    if (res.api_status === true) {
+      localStorage.setItem('examName', JSON.stringify(res.data));
+    } else {
+      // Swal.fire({
+      //   text: `${res.message}`,
+      //   icon: 'error',
+      // });
+    }
+  },
+    (error) => {
+      this.common.apiErrorHandler(error);
+    }
+  );
 }
 
 }

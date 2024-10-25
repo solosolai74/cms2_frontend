@@ -14,6 +14,7 @@ import { CommonService } from '../../../../../services/common.service';
 import Swal from 'sweetalert2';
 
 import moment from 'moment';
+import { CentreDeviceDetailsService } from '../../../../../services/centre-device-details.service';
 
 export const MY_FORMATS = {
   parse: {
@@ -51,7 +52,7 @@ export class EditExamDetailsComponent {
   editData: any
 
 
-  constructor(private readonly fb: FormBuilder , private readonly router: Router, private readonly examDetailsService : ExamDetailsService,  private readonly common : CommonService,) {
+  constructor(private readonly fb: FormBuilder , private readonly router: Router, private readonly examDetailsService : ExamDetailsService,  private readonly common : CommonService,  private readonly centreDeviceDetailService: CentreDeviceDetailsService) {
 
     const today = new Date();
 
@@ -71,74 +72,163 @@ export class EditExamDetailsComponent {
  
     this.addExamDetails = this.fb.group({
 
-      examName: [this.editData.examname, [
+      // examName: [this.editData.examname, [
+      //   Validators.required,
+      //   Validators.pattern(/^[a-zA-Z\s.0-9]{0,25}$/) 
+      // ]],
+
+      // clientName: [this.editData.clientname, [
+      //   Validators.required,
+      //   Validators.pattern(/^[a-zA-Z\s.0-9]{0,25}$/) 
+      // ]],
+
+      // numberOfExamDay: [this.editData.no_of_examdays, [
+      //   Validators.required,
+      //   // Validators.pattern(/^[0-9]{10}$/)
+      //   Validators.pattern(/^\d+$/)
+      // ]],
+
+      // numberOfExamSlot: [this.editData.no_of_examslot, [
+      //   Validators.required,
+      //   Validators.pattern(/^\d+$/)
+      // ]],
+
+      // numberOfRegion: [this.editData.no_of_regions, [
+      //   Validators.required,
+      //   Validators.pattern(/^\d+$/)
+      // ]],
+
+      // numberOfCentres: [this.editData.no_of_centers, [
+      //   Validators.required,
+      //   Validators.pattern(/^\d+$/)
+      // ]],
+
+      // mocStartDate: [this.editData.mock_start_date, [
+      //   Validators.required,
+      //   // Validators.pattern(/^\d+$/)
+      // ]],
+
+      // mocEndDate: [this.editData.mock_end_date, [
+      //   Validators.required,
+      //   this.dateRangeValidator('mocStartDate') 
+      //   // this.dateRangeValidator('examStartDate')
+      //   // Validators.pattern(/^\d+$/)
+      // ]],
+
+      // examStartDate: [this.editData.exam_start_date, [
+      //   Validators.required,
+      //   this.dateRangeValidator('mocEndDate') 
+
+      //   // Validators.pattern(/^\d+$/)
+      // ]],
+
+      // examEndDate: [this.editData.exam_end_date, [
+      //   Validators.required,
+      //   this.dateRangeValidator('examStartDate')
+
+      //   // Validators.pattern(/^\d+$/)
+      // ]],
+
+      // examHash: [this.editData.exam_hash, [
+      //   Validators.required,
+      //   Validators.pattern(/^[a-zA-Z\s.0-9]{0,25}$/) 
+      // ]],
+
+      // examCode: [this.editData.examcode, [
+      //   Validators.required,
+      //   Validators.pattern(/^[a-zA-Z\s.0-9]{0,25}$/) 
+      // ]],
+
+      examName: ['', [
         Validators.required,
         Validators.pattern(/^[a-zA-Z\s.0-9]{0,25}$/) 
       ]],
 
-      clientName: [this.editData.clientname, [
+      clientName: ['', [
         Validators.required,
         Validators.pattern(/^[a-zA-Z\s.0-9]{0,25}$/) 
       ]],
 
-      numberOfExamDay: [this.editData.no_of_examdays, [
+      numberOfExamDay: ['', [
         Validators.required,
         // Validators.pattern(/^[0-9]{10}$/)
         Validators.pattern(/^\d+$/)
       ]],
 
-      numberOfExamSlot: [this.editData.no_of_examslot, [
+      numberOfExamSlot: ['', [
         Validators.required,
         Validators.pattern(/^\d+$/)
       ]],
 
-      numberOfRegion: [this.editData.no_of_regions, [
+      numberOfRegion: ['', [
         Validators.required,
         Validators.pattern(/^\d+$/)
       ]],
 
-      numberOfCentres: [this.editData.no_of_centers, [
+      numberOfCentres: ['', [
         Validators.required,
         Validators.pattern(/^\d+$/)
       ]],
 
-      mocStartDate: [this.editData.mock_start_date, [
+      mocStartDate: ['', [
         Validators.required,
         // Validators.pattern(/^\d+$/)
       ]],
 
-      mocEndDate: [this.editData.mock_end_date, [
+      mocEndDate: ['', [
         Validators.required,
         this.dateRangeValidator('mocStartDate') 
         // this.dateRangeValidator('examStartDate')
         // Validators.pattern(/^\d+$/)
       ]],
 
-      examStartDate: [this.editData.exam_start_date, [
+      examStartDate: ['', [
         Validators.required,
         this.dateRangeValidator('mocEndDate') 
 
         // Validators.pattern(/^\d+$/)
       ]],
 
-      examEndDate: [this.editData.exam_end_date, [
+      examEndDate: ['', [
         Validators.required,
         this.dateRangeValidator('examStartDate')
 
         // Validators.pattern(/^\d+$/)
       ]],
 
-      examHash: [this.editData.exam_hash, [
+      examHash: ['', [
         Validators.required,
         Validators.pattern(/^[a-zA-Z\s.0-9]{0,25}$/) 
       ]],
 
-      examCode: [this.editData.examcode, [
+      examCode: ['', [
         Validators.required,
         Validators.pattern(/^[a-zA-Z\s.0-9]{0,25}$/) 
       ]],
 
     });
+
+  }
+
+  ngOnInit(){
+
+    const retrievedDataString = localStorage.getItem('edit');
+    this.editData = retrievedDataString ? JSON.parse(retrievedDataString) : null;
+
+    console.log(this.editData);
+    
+    this.addExamDetails.get('examName')?.setValue(this.editData.examname);
+    this.addExamDetails.get('clientName')?.setValue(this.editData.clientname);
+    this.addExamDetails.get('numberOfExamDay')?.setValue(this.editData.no_of_examdays);
+    this.addExamDetails.get('numberOfExamSlot')?.setValue(this.editData.no_of_examslot);
+    this.addExamDetails.get('numberOfRegion')?.setValue(this.editData.no_of_regions);
+    this.addExamDetails.get('numberOfCentres')?.setValue(this.editData.no_of_centers);
+    this.addExamDetails.get('mocStartDate')?.setValue(this.editData.mock_start_date);
+    this.addExamDetails.get('mocEndDate')?.setValue(this.editData.mock_end_date);
+    this.addExamDetails.get('examStartDate')?.setValue(this.editData.exam_start_date);
+    this.addExamDetails.get('examEndDate')?.setValue(this.editData.exam_end_date);
+    this.addExamDetails.get('examHash')?.setValue(this.editData.exam_hash);
+    this.addExamDetails.get('examCode')?.setValue(this.editData.examcode);
 
   }
 
@@ -166,7 +256,7 @@ export class EditExamDetailsComponent {
   
         if (res.api_status === true) {
           // this.resetSearchForm()
-          
+          this.examNameAPI()
         Swal.fire({
           // title: `${res.message}`,
           text: `${res.message}`,
@@ -225,6 +315,24 @@ formatDate(date : any) {
     const parsedDate = moment(date);
     return parsedDate.isValid() ? parsedDate.format('YYYY-MM-DD') : null;
   }
+}
+
+
+examNameAPI() {
+  this.centreDeviceDetailService.examName().subscribe((res) => {
+    if (res.api_status === true) {
+      localStorage.setItem('examName', JSON.stringify(res.data));
+    } else {
+      // Swal.fire({
+      //   text: `${res.message}`,
+      //   icon: 'error',
+      // });
+    }
+  },
+    (error) => {
+      this.common.apiErrorHandler(error);
+    }
+  );
 }
 
 }

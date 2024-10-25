@@ -1,16 +1,15 @@
 <mat-card class="cardWithShadow container">
     <mat-card-content>
-        <mat-tab-group>
+        <mat-tab-group (selectedIndexChange)="tabChanged($event)">
             <mat-tab label="Region">
-                <app-region></app-region>
+                <app-region *ngIf="selectedTab == 0"></app-region>
             </mat-tab>
             <mat-tab label="State">
-               <app-state></app-state>
+                <app-state *ngIf="selectedTab == 1"></app-state>
             </mat-tab>
-
             <mat-tab label="City">
-                <app-city></app-city>
-             </mat-tab>
+                <app-city *ngIf="selectedTab == 2"></app-city>
+            </mat-tab>
         </mat-tab-group>
     </mat-card-content>
 </mat-card>

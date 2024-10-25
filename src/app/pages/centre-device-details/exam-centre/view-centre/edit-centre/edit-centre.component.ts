@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { Router } from '@angular/router';
+import { BreadcrumbDetailsService } from '../../../../../breadcrumb-details.service';
 
 @Component({
   selector: 'app-edit-centre',
@@ -30,9 +31,9 @@ export class EditCentreComponent {
 
 
 
-  constructor(private readonly fb: FormBuilder,  private readonly router: Router) {
+  constructor(private readonly fb: FormBuilder,  private readonly router: Router, private readonly breadcrumbDetails: BreadcrumbDetailsService) {
 
-
+    this.breadcrumbDetails.setBreadcrumbName('Exam Centre');
 
    
     this.addExamDetails = this.fb.group({

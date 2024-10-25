@@ -5,6 +5,7 @@ import { Router, RouterOutlet } from '@angular/router';
 import Swal from 'sweetalert2';
 import { ExamDetailsService } from '../../../../services/exam-details.service';
 import { CommonService } from '../../../../services/common.service';
+import { CentreDeviceDetailsService } from '../../../../services/centre-device-details.service';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class ViewExamDetailsComponent {
 
 
 
-  constructor(private readonly router: Router, private readonly examDetailsService: ExamDetailsService, private readonly common: CommonService,) { }
+  constructor(private readonly router: Router, private readonly examDetailsService: ExamDetailsService, private readonly common: CommonService,  private readonly centreDeviceDetailService: CentreDeviceDetailsService) { }
 
   ngOnInit() {
 
@@ -100,7 +101,7 @@ export class ViewExamDetailsComponent {
           return item.id != data.id
         })
 
-
+        this.examNameAPI()
         Swal.fire({
           text: `${res.message}`,
           icon: 'success',
@@ -119,4 +120,23 @@ export class ViewExamDetailsComponent {
       }
     );
   }
+
+
+examNameAPI() {
+  this.centreDeviceDetailService.examName().subscribe((res) => {
+    if (res.api_status === true) {
+      localStorage.setItem('examName', JSON.stringify(res.data));
+    } else {
+      // Swal.fire({
+      //   text: `${res.message}`,
+      //   icon: 'error',
+      // });
+    }
+  },
+    (error) => {
+      this.common.apiErrorHandler(error);
+    }
+  );
+}
+
 }
